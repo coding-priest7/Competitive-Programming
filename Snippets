@@ -1,0 +1,213 @@
+{
+	"Ceil function to avoid precision error": {
+		"prefix": "__ceil",
+		"body": [
+			"int ceil(int a, int b) ",
+			"{",
+			"if (a == 0) return 0;",
+			"return (a - 1)/b + 1;",
+			"}",
+		],
+		"description": "useful functions "
+	},
+	"Binary power recursive": {
+		"prefix": "__binpow_rec",
+		"body": [
+			" int binpow_rec ( int a,  int b) {",
+			"    if (b == 0) return 1;",
+			"     int res = binpow (a, b / 2);",
+			"    if (b % 2) return res * res * a;",
+			"    else return res * res;",
+			"}",
+		],
+		"description": "useful functions "
+	},
+	"Binary power iterative": {
+		"prefix": "__binpow_it",
+		"body": [
+			"int binpow_it (int a, int b) {",
+			"    int res = 1;",
+			"    while (b > 0) {",
+			"        if (b % 2 == 1) res = res * a;",
+			"        a = a * a;",
+			"        b = b / 2;",
+			"    }",
+			"    return res;",
+			"}",
+		],
+		"description": "useful functions "
+	},
+	"Binary exponentiation with modulo": {
+		"prefix": "__binpow_exp_modulo",
+		"body": [
+			"int Binexp (int a, int b, int m) {",
+			"        int res = 1;",
+			"        while (b > 0) {",
+			"                if(b % 2) {",
+			"                   res = (res * a) % m;",
+			"               }",
+			"                a = (a * a) % m;",
+			"                b = b>>1;",
+			"        }",
+			"        return res;",
+			"}",
+		],
+		"description": "useful functions "
+	},
+	"Prime Check :": {
+		"prefix": "__prime_check",
+		"body": [
+			"bool isPrime( int n ) {",
+			"    if ( n == 1 ) return false; ",
+			"    if ( n == 2 ) return true; ",
+			"    if ( n%2 == 0 ) return false; ",
+			"    for ( int i = 3; i * i <= n; i += 2 )",
+			"        if ( n%i == 0 ) return false;",
+			"    return true;",
+			"}"
+		],
+		"description": "useful functions "
+	},
+	"Prime Sieve :": {
+		"prefix": "__prime_sieve",
+		"body": [
+			"vector<int> sieve(int n)",
+			"{",
+			"    int *arr = new int[n + 1]();",
+			"    vector<int> vect;",
+			"    for (int i = 2; i <= n; i++)",
+			"        if (arr[i] == 0)",
+			"        {",
+			"            vect.push_back(i);",
+			"            for (int j = 2 * i; j <= n; j += i)",
+			"                arr[j] = 1;",
+			"        }",
+			"    return vect;",
+			"}",
+			""
+		],
+		"description": "useful functions "
+	},
+	"Divisors :": {
+		"prefix": "__divisors",
+		"body": [
+			"vector<int> divisors[n+1]; //2d vector",
+			"for(int i = 1; i <= n; ++i) {",
+			"                 for(int j = i ; j <= N ;j += i)",
+			"                     divisors[j].emplace_back(i);",
+			"            }",
+			""
+		],
+		"description": "useful functions "
+	},
+	"Prime_factorization :": {
+		"prefix": "__factorization_prime",
+		"body": [
+			"vector<int> factorize(int n) {",
+			"    vector<int> res;",
+			"    // time : O(sqrt(n))",
+			"    for (int i = 2; i * i <= n; ++i) {",
+			"        while (n % i == 0) {",
+			"            res.push_back(i);",
+			"            n /= i;",
+			"        }",
+			"    }",
+			"    if (n != 1) {             // i.e. n is not a perfect square",
+			"        res.push_back(n);",
+			"    }",
+			"    return res;",
+			"}",
+			""
+		],
+		"description": "useful functions "
+	},
+	"__library_header :": {
+		"prefix": "__pbds",
+		"body": [
+			"#include<ext/pb_ds/assoc_container.hpp>",
+			"#include<ext/pb_ds/tree_policy.hpp>",
+			"using namespace __gnu_pbds;",
+			"typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> pbds; // find_by_order--> gives kth element as index, order_of_key---> no. of element < x",
+			""
+		],
+		"description": "useful functions "
+	},
+	"modulo_inverse :": {
+		"prefix": "__mod_inv",
+		"body": [
+			"int mod_inv(int n, int m)",
+			"{",
+			"    // m is mod : n^m-2(mod m)",
+			"    return Binexp(n, m - 2, m);",
+			"}"
+		],
+		"description": "useful functions "
+	},
+	"gcd_1 :": {
+		"prefix": "__gcd_rec",
+		"body": [
+			"int gcd_rec(int a, int b)",
+			"{",
+			"    if (b == 0)",
+			"        return a;",
+			"    return gcd_rec(b, a % b);",
+			"}"
+		],
+		"description": "useful functions "
+	},
+	" gcd_2 :": {
+		"prefix": "__gcd_it",
+		"body": [
+			"int gcd_it(int a, int b)",
+			"{",
+			"    while (b != 0)",
+			"    {",
+			"        a %= b;",
+			"        swap(a, b);",
+			"    }",
+			"    return a;",
+			"}"
+		],
+		"description": "useful functions "
+	},
+	" factorial store:": {
+		"prefix": "__compute_fact",
+		"body": [
+			"",
+			"void compute_fact(int n, int m)",
+			"{",
+			"    // declare fact vector before running this function",
+			"",
+			"    fact.resize(n + 1);",
+			"    fact[0] = 1;",
+			"    fo(i, 1, n + 1)",
+			"    {",
+			"        fact[i] = fact[i - 1] * i % m;",
+			"    }",
+			"}",
+			""
+		],
+		"description": "useful functions "
+	},
+	" nCr :": {
+		"prefix": "__nCr",
+		"body": [
+			"int ncr(int n, int r, int m)",
+			"{",
+			"    // run compute fact function before running this function",
+			"    // compute_fact(n);",
+			"",
+			"    if (n < r)",
+			"    {",
+			"        return 0;",
+			"    }",
+			"    if (r == 0)",
+			"    {",
+			"        return 1;",
+			"    }",
+			"    return (fact[n] * mod_inv(fact[r], m)) % m * mod_inv(fact[n - r], m) % m;",
+			"}"
+		],
+		"description": "useful functions "
+	},
+}
