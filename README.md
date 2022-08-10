@@ -1,2 +1,2 @@
 # Competitive-Programming
-Snippets and debugger 
+Snippets and debugger related to ```coding_priest7```
